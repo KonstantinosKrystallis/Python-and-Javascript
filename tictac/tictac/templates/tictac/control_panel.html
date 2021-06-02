@@ -1,0 +1,22 @@
+{% extends "tictac/layout.html" %}
+{% load static %}
+
+{% block body %}
+Loading...
+{% endblock %}
+
+{% block script %}
+<link href="{% static 'tictac/control.css' %}" rel="stylesheet" />
+<script type="text/babel" src="{%static 'tictac/ControlPanel.jsx' %}"></script>
+<script type="text/babel" src="{%static 'tictac/utils.js' %}"></script>
+<script type="text/babel">
+    class App extends React.Component {
+        render() {
+            return (
+                <ControlPanel />
+            );
+        }
+    }
+    ReactDOM.render(<App />, document.querySelector("main"));
+</script>
+{% endblock %}

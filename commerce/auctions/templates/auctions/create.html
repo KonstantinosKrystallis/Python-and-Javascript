@@ -1,0 +1,33 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+<div class="container-fluid">
+    <form method="POST">
+        {% csrf_token %}
+        <button class="btn btn-primary mb-2" type="submit" name="create">Create Listing</button>
+        {{ form.non_field_errors }}
+        <div class="row">
+            <div class="mb-2 col-auto">
+                <div class="col-auto">Name:</div>
+                <div class="col-auto">{{ form.name }}</div>
+            </div>
+            <div class="mb-2 col-auto">
+                <div class="col-auto">Starting Bid:</div>
+                <div class="col-auto">{{ form.startingBid }}</div>
+            </div>
+            <div class="mb-2 col-auto">
+                <div class="col-auto">Category(Optional):</div>
+                <div class="col-auto">{{ form.category}}</div>
+            </div>
+        </div>
+        <div class="mb-2">
+            {{ form.description }}
+        </div>
+        <div class="mb-2">
+            {{ form.image }}
+        </div>
+    </form>
+</div>
+
+{% endblock %}

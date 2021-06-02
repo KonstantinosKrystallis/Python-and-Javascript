@@ -1,0 +1,31 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+<!-- Here the main page is gonna be displayed -->
+<div id="main" class="mt-2">
+
+</div>
+{% endblock %}
+
+{% block script %}
+{{ request.user.username|json_script:"user" }}
+{{content|json_script:"content"}}
+<script type="text/babel" src="{% static 'network/edit.jsx' %}"></script>
+<script type="text/babel">
+    const user = JSON.parse(document.getElementById('user').textContent);
+    const content = JSON.parse(document.getElementById('content').textContent);
+
+    class App extends React.Component {
+        render() {
+            return (
+                <div id="edit-container" className="container-fluid ">
+                    {(user) && <EditPost content={content} />}
+                </div >
+            );
+        }
+    }
+    ReactDOM.render(<App />, document.querySelector("#main"));
+</script>
+
+{% endblock %}

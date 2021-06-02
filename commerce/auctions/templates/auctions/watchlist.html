@@ -1,0 +1,79 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row d-flex  align-items-center">
+        <div class="col-auto">
+            <h2>Watchlist</h2>
+        </div>
+        <div class="col-auto">
+            <form method="POST">
+                {% csrf_token %}
+                <label for="categories">Category:</label>
+                <select name="categories" id="categories">
+                    <option value="All">All</option>
+                    {% for c in cat %}
+                    <option value="{{c}}">{{c}}</option>
+                    {% endfor %}
+                </select>
+                <button class="btn btn-warning" type="submit" name="filter">Filter</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<hr>
+{% for item in list %}
+{% if item in watch %}
+<div class="container-fluid listings-page">
+    <div class="row  align-items-center">
+        <div class="col-2 d-flex justify-content-center align-items-center left-col">
+            <div class="media">
+                <a href="product/{{ item.id }}">
+                    <img src="{{ item.image }}" class="img-thumbnail listing" alt="no image">
+                </a>
+            </div>
+        </div>
+
+        <div class=" col-8 center-col">
+            <div class="row no-gutters">
+                <div class=" col-auto">
+                    <a href="product/{{ item.id }}">
+                        <h4>{{ item.name }}</h4>
+                    </a>
+                </div>
+                <div class="col-auto">
+
+                </div>
+                <div class="col-auto"></div>
+                <div class="description listing">
+                    {{ item.description | safe | linebreaks}}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-2 right-col">
+            <div class="mt-5">
+                <h6>Category: {{item.category}}</h6>
+            </div>
+            <div>
+                <h6>Starting Bid: {{item.startingBid}}$</h6>
+            </div>
+            <div>
+                <!-- This is a horror show -->
+                {% for bid in bids %}
+                {% if bid.prodId == item %}
+                <h6>Highest Bid: {{bid.amount}}$</h6>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr>
+{% endif %}
+{% endfor %}
+
+{% endblock %}

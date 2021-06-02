@@ -1,0 +1,33 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+<!-- Here the main page is gonna be displayed -->
+
+{% endblock %}
+
+{% block script %}
+{{ request.user.username|json_script:"user" }}
+<script type="text/babel" src="{% static 'network/profile.jsx' %}"></script>
+<script type="text/babel">
+    const user = JSON.parse(document.getElementById('user').textContent);
+    var myStorage = window.localStorage;
+    class App extends React.Component {
+        render() {
+            return (
+                <div id="main">
+                    <div id="profile-container" className="container-fluid ">
+                        <Profile />
+                        <div id="posts-container" className="d-flex justify-content-center ">
+                            <div id="posts-sub" className="col-6"><Post /></div>
+                        </div>
+                    </div >
+                </div >
+
+            );
+        }
+    }
+    ReactDOM.render(<App />, document.querySelector("#root"));
+</script>
+
+{% endblock %}

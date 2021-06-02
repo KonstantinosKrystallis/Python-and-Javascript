@@ -1,0 +1,32 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+Edit {{ title }} - Encyclopedia
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <h2>Edit this page with
+            <a target="_blank"
+                href="https://docs.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax">markup.</a>
+        </h2>
+    </div>
+
+    <div class="row">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="Update Page">
+            <h5>{{ title }}</h5>
+            {{ form.non_field_errors }}
+            <div class="fieldWrapper" hidden>
+                {{ form.pageTitle }}
+            </div>
+            <div class="fieldWrapper">
+                {{ form.pageContent }}
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

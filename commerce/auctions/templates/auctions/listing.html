@@ -1,0 +1,123 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row  align-items-center">
+        <div class="col-2 d-flex justify-content-center align-items-center">
+            <div class="image">
+                <img class="img-thumbnail" src="{{ item.image }}" alt="no image">
+            </div>
+        </div>
+        <div class="col-8">
+            <div class="row  no-gutters justify-content-center align-items-center">
+                <div class="col-3">
+                    <h2>
+                        {{ item.name }}
+                    </h2>
+                </div>
+                <div class="col-2 ">
+                    {% if item.closed %}
+                    (CLOSED)
+                    {% else %}
+                    {% if user == item.creator %}
+                    <form method="POST">
+                        {% csrf_token %}
+                        <button class="btn" type="submit" name="close">Close Listing</button>
+                    </form>
+                    {% else %}
+                    {% endif %}
+                    {% endif %}
+                </div>
+                <div class="col-4"></div>
+
+                <div class="col-3 d-flex justify-content-end">
+                    {% if user.is_authenticated %}
+                    {% if watched %}
+                    <form method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-secondary btn-sm" type="submit" name="unwatch">Unwatch</button>
+                    </form>
+                    {% else %}
+                    <form method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-secondary btn-sm" type="submit" name="watch">Watch</button>
+                    </form>
+                    {% endif %}
+                    {% endif %}
+                </div>
+
+                <div class="description">
+                    {{ item.description | safe | linebreaks}}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-2">
+            <div class="row mt-3 align-items-center no-gutters">
+                <div>
+                    Listed by: {{ item.creator.username }}
+                </div>
+            </div>
+            <div class="row align-items-center no-gutters">
+                <h4 class="col-auto">Category: </h4>
+                <h6 class="col-auto">{{item.category}}</h6>
+            </div>
+            <div class="row align-items-center no-gutters">
+                <h4 class="col-auto">Starting Bid:</h4>
+                <h6 class="col-auto">{{item.startingBid}}$</h6>
+            </div>
+            <div class="row align-items-center no-gutters">
+                <h4 class="col-auto">Highest Bid:</h4>
+                <h6 class="col-auto">{{bid.amount}}$</h6>
+                {% if bid.usrId == user %}
+                <div style="color: red;">You</div>
+                {% endif %}
+            </div>
+            {% if not item.closed %}
+            {% if user.is_authenticated %}
+            <div>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{bid_form.amount}}
+                    <button class="btn btn-dark btn-sm mt-1" type="submit" name="bidin">Bid</button>
+                </form>
+            </div>
+            {% endif %}
+            {% else %}
+            {% if bid.usrId == user %}
+            <h6 style="color: red;">You have won the bidding!</h6>
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+    <hr>
+    <div class="row comment d-flex justify-content-center align-items-center">
+        {% if user.is_authenticated %}
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                {{comment_form}}
+            </div>
+            <div class="row justify-content-end">
+                <button class="btn mt-1 col-auto btn-primary" type="submit" name="comment">Comment</button>
+            </div>
+        </form>
+        {% endif %}
+    </div>
+    <hr>
+
+    <div class="container-fluid">
+        {% for comment in comments %}
+        <div class="row mb-3  ">
+            <div class="mb-2">
+                Posted by: {{ comment.usrId.username }} on {{ comment.date }}
+            </div>
+            <div class="comments">
+                {{comment.message | safe | linebreaks}}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

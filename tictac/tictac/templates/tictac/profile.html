@@ -1,0 +1,22 @@
+{% extends "tictac/layout.html" %}
+{% load static %}
+
+{% block body %}
+Loading...
+{% endblock %}
+
+{% block script %}
+
+<script type="text/babel" src="{%static 'tictac/Profile.jsx' %}"></script>
+<script type="text/babel" src="{%static 'tictac/utils.js' %}"></script>
+<script type="text/babel">
+    class App extends React.Component {
+        render() {
+            return (
+                <Profile />
+            );
+        }
+    }
+    ReactDOM.render(<App />, document.querySelector("main"));
+</script>
+{% endblock %}

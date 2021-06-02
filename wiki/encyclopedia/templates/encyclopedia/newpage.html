@@ -1,0 +1,31 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+Create new page - Encyclopedia
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <h2>Create a new page on this wiki using
+            <a target="_blank"
+                href="https://docs.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax">markup.</a>
+        </h2>
+    </div>
+
+    <div class="row">
+        <form action="{% url 'newpage' %}" method="POST">
+            {% csrf_token %}
+            {% if message %}
+            <div class="alert alert-danger col-2" role="alert">
+                {{ message }}
+            </div>
+            {% endif %}
+            <input type="submit" value="Save Page">
+            {{ form }}
+    </div>
+    </form>
+</div>
+</div>
+
+{% endblock %}

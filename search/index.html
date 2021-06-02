@@ -1,0 +1,46 @@
+<!-- For this project I used HTML, CSS and Bootstrap. -->
+
+<!-- I have tried to imitate Google's style as best as I can, using the element inspector and copying some of the style values. -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Search</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="nav1 h-auto">
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link text-dark text-" aria href="image_search.html">Images</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="advanced_search.html">Advanced Search</a>
+            </li>
+        </ul>
+    </div>
+    <div class="container-fluid center">
+        <div class=" d-flex justify-content-center">
+            <form action="https://google.com/search">
+                <div class="mb-3 text-center">
+                    <img id="logo" src="googlelogo_color_272x92dp.png" alt="Google">
+                </div>
+                <input class="mb-3 search-bar form-control" type="text" name="q">
+                <div class="d-flex gap-3 d-md-flex justify-content-center">
+                    <button class="btn btn-light" type="submit">Google Search</button>
+                    <button class="btn btn-light" type="submit" name="btnI" value="1">
+                        I'm Feeling Lucky</button>
+                </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous">
+        </script>
+</body>
+
+</html>

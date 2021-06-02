@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+}
+
+.fa-heart {
+  color: red;
+  cursor: pointer;
+}
+
+.post {
+  outline-style: solid;
+  outline-width: 1px;
+  outline-color: rgb(rgba(0, 0, 0, 0.075));
+  padding: 5px;
+}
+
+.post-content {
+  overflow-x: none;
+  overflow-y: auto;
+  height: 15vh;
+  outline-style: solid;
+  outline-width: 1px;
+  outline-color: rgb(rgba(0, 0, 0, 0.075));
+  padding: 5px;
+}
+
+#main-container {
+  padding: 0;
+}
+
+#new-post-content {
+  resize: none;
+  height: 15vh;
+}
+
+#new-post-content {
+  width: 100%;
+}

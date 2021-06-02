@@ -1,0 +1,55 @@
+textarea {
+  min-height: 400px;
+}
+
+h7 {
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.email .email-tile {
+  font-weight: bolder;
+  text-decoration: none;
+  outline-style: solid;
+  outline-width: 1px;
+  outline-color: rgba(0, 0, 0, 0.15);
+  padding: 1px;
+}
+
+.email .email-tile.read {
+  font-weight: normal;
+  color: rgb(110, 110, 110);
+  text-decoration: none;
+  outline-style: solid;
+  outline-width: 1px;
+  outline-color: rgba(0, 0, 0, 0.15);
+  padding: 1px;
+}
+
+.email .email-tile:hover {
+  outline-style: solid;
+  outline-width: 3px;
+  outline-color: rgb(0, 123, 255);
+  padding: 1px;
+}
+
+.email .email-redir {
+  text-decoration: none;
+  color: black;
+}
+
+#view-email .email-sender,
+#view-email .email-recipients,
+#view-email .email-subject {
+  outline-style: solid;
+  outline-width: 1px;
+  outline-color: rgba(0, 0, 0, 0.15);
+  padding: 1px;
+}
+
+#view-email .email-body {
+  outline-style: solid;
+  outline-width: 2px;
+  outline-color: rgb(161, 161, 161);
+  padding: 4px;
+}

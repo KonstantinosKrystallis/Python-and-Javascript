@@ -1,0 +1,37 @@
+{% extends "tictac/layout.html" %}
+
+{% block body %}
+
+
+
+{% if message %}
+<div>{{ message }}</div>
+{% endif %}
+
+<form class="form-group" action="{% url 'register' %}" method="post">
+    <h2>Register</h2>
+    {% csrf_token %}
+    <div>
+        <input class="form-control" autofocus type="text" name="username" placeholder="Username">
+    </div>
+    <div>
+        <input class="form-control" type="email" name="email" placeholder="Email Address">
+    </div>
+    <div>
+        <input class="form-control" type="password" name="password" placeholder="Password">
+    </div>
+    <div>
+        <input class="form-control" type="password" name="confirmation" placeholder="Confirm Password">
+    </div>
+    <div>
+        <input class="form-btn" type="submit" value="Register">
+    </div>
+    <div>
+        Already have an account? <a href="{% url 'login' %}">Log In here.</a>
+    </div>
+</form>
+
+
+
+
+{% endblock %}
